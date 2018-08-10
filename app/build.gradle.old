@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
+    }
+}
+
+plugins {
+	id 'net.ltgt.apt' version '0.10'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+repositories {
+        jcenter()
+        mavenCentral()
+}
+
+
+dependencies {
+        testCompile('junit:junit:4.12')
+        // https://mvnrepository.com/artifact/org.mockito/mockito-all
+		testCompile group: 'org.mockito', name: 'mockito-all', version: '1.8.4'
+		// https://mvnrepository.com/artifact/org.assertj/assertj-core
+		testCompile group: 'org.assertj', name: 'assertj-core', version: '3.10.0'
+
+		compile("org.springframework.boot:spring-boot-starter-web")
+    	testCompile('org.springframework.boot:spring-boot-starter-test')
+    	
+    	compileOnly 'org.projectlombok:lombok:1.18.2'
+	
+		apt "org.projectlombok:lombok:1.18.2"
+
+}
+
+bootJar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
